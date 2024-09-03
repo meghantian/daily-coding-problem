@@ -18,21 +18,30 @@ class LinkedList:
         while temp:
             print(temp.val, end=" -> " if temp.next else "\n")
             temp = temp.next
-    def swapPairs(self) -> ListNode:
-        dummyHead = ListNode(0)
-        dummyHead.next = self.head
-        temp = dummyHead
-        while temp.next and temp.next.next:
-            node1 = temp.next
-            node2 = temp.next.next
-            temp.next = node2
-            node1.next = node2.next
-            node2.next = node1
-            temp = node1
-        self.head = dummyHead.next
-        return self.head
+    # recursive version
+    def swapPairs(self,head) -> ListNode:
+        if head is None or head.next is None:
+                return head
+        newhead = head.next
+        head.next = self.swapPairs(newhead.next)
+        newhead.next = head
+        return newhead
+    # def swapPairs(self) -> ListNode:
+    #     dummyHead = ListNode(0)
+    #     dummyHead.next = self.head
+    #     temp = dummyHead
+    #     while temp.next and temp.next.next:
+    #         node1 = temp.next
+    #         node2 = temp.next.next
+    #         temp.next = node2
+    #         node1.next = node2.next
+    #         node2.next = node1
+    #         temp = node1
+    #     self.head = dummyHead.next
+    #     return self.head
 
     
+        
 
 llist = LinkedList()
 llist.push(5)
@@ -41,7 +50,7 @@ llist.push(3)
 llist.push(2)
 llist.push(1)
 llist.print()
-llist.swapPairs()
+llist.head = llist.swapPairs(llist.head)
 llist.print()
 
  
