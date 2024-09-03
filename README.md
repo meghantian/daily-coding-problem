@@ -1,1 +1,1 @@
-my solution for coding interview problem mainly from big name tech company
+my solution for coding interview problems mainly from the tech companies
